@@ -46,6 +46,8 @@ tags = {
 
 vpc = {
   main = {
-    cidr_block = "10.0.0.0/16"
+    cidr_block            = "10.0.0.0/16"
+    web_subnet_cidr_block = ["10.0.0.0/24"]
   }
 }
+
