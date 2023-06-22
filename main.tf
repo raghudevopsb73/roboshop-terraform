@@ -11,13 +11,13 @@ module "vpc" {
 
 }
 
-//module "app_server" {
-//  source = "git::https://github.com/raghudevopsb73/tf-module-app.git"
-//
-//  env            = var.env
-//  tags           = var.tags
-//  component = "test"
-//  subnet_id =
-//}
+module "app_server" {
+  source = "git::https://github.com/raghudevopsb73/tf-module-app.git"
+
+  env       = var.env
+  tags      = var.tags
+  component = "test"
+  subnet_id = module.vpc["subnet_ids"]["app"]["subnet_ids"][0]
+}
 
 
