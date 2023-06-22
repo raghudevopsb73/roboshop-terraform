@@ -17,7 +17,8 @@ module "app_server" {
   env       = var.env
   tags      = var.tags
   component = "test"
-  subnet_id = module.vpc["subnet_ids"]["app"]["subnet_ids"][0]
+  subnet_id = lookup(lookup(lookup(module.vpc, "subnet_ids", null), "app", null), "subnet_ids", null)[0]
+  //module.vpc["subnet_ids"]["app"]["subnet_ids"][0]
 }
 
 
