@@ -5,7 +5,8 @@ module "vpc" {
   cidr_block = each.value["cidr_block"]
   subnets    = each.value["subnets"]
 
-  env  = var.env
-  tags = var.tags
+  env            = var.env
+  tags           = var.tags
+  default_vpc_id = var.default_vpc_id
 
 }
