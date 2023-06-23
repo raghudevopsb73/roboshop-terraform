@@ -42,7 +42,7 @@ module "rabbitmq" {
 }
 
 module "rds" {
-  source = "git::https://github.com/raghudevopsb73/tf-module-rabbitmq.git"
+  source = "git::https://github.com/raghudevopsb73/tf-module-rds.git"
 
   for_each       = var.rds
   component      = each.value[component]
