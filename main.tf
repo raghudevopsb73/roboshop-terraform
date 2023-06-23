@@ -27,9 +27,9 @@ module "app_server" {
 module "rabbitmq" {
   source = "git::https://github.com/raghudevopsb73/tf-module-rabbitmq.git"
 
-  for_each       = var.rabbitmq
-  component      = each.value["component"]
-  instance_typed = each.value["instance_type"]
+  for_each      = var.rabbitmq
+  component     = each.value["component"]
+  instance_type = each.value["instance_type"]
 
   sg_subnet_cidr = lookup(lookup(lookup(lookup(var.vpc, "main", null), "subnets", null), "app", null), "cidr_block", null)
   vpc_id         = lookup(lookup(module.vpc, "main", null), "vpc_id", null)
