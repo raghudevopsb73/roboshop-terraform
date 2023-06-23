@@ -35,8 +35,9 @@ module "rabbitmq" {
   vpc_id         = lookup(lookup(module.vpc, "main", null), "vpc_id", null)
   subnet_id      = lookup(lookup(lookup(lookup(module.vpc, "main", null), "subnet_ids", null), "db", null), "subnet_ids", null)[0]
 
-  env  = var.env
-  tags = var.tags
+  env            = var.env
+  tags           = var.tags
+  allow_ssh_cidr = var.allow_ssh_cidr
 }
 
 
