@@ -8,6 +8,7 @@ module "vpc" {
   env            = var.env
   tags           = var.tags
   default_vpc_id = var.default_vpc_id
+  default_vpc_rt = var.default_vpc_rt
 
 }
 
