@@ -1,40 +1,5 @@
 env = "dev"
 
-components = {
-
-  frontend = {
-    tags = { Monitor = "true", env = "dev" }
-  }
-  mongodb = {
-    tags = { env = "dev" }
-  }
-  catalogue = {
-    tags = { Monitor = "true", env = "dev" }
-  }
-  redis = {
-    tags = { env = "dev" }
-  }
-  user = {
-    tags = { Monitor = "true", env = "dev" }
-  }
-  cart = {
-    tags = { Monitor = "true", env = "dev" }
-  }
-  mysql = {
-    tags = { env = "dev" }
-  }
-  shipping = {
-    tags = { Monitor = "true", env = "dev" }
-  }
-  rabbitmq = {
-    tags = { env = "dev" }
-  }
-  payment = {
-    tags = { Monitor = "true", env = "dev" }
-  }
-
-}
-
 tags = {
   company_name  = "XYZ Tech"
   business      = "ecommerce"
@@ -60,6 +25,7 @@ default_vpc_id = "vpc-0e451797fe9172e67"
 default_vpc_rt = "rtb-006100fe759977d85"
 allow_ssh_cidr = ["172.31.0.8/32"]
 zone_id        = "Z055331734ICV430E01P7"
+kms_key_id     = "f0a71b80-90c3-4da1-a189-b4b95e9764e8"
 
 rabbitmq = {
   main = {
