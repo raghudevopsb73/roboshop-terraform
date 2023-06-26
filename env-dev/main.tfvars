@@ -65,6 +65,7 @@ elasticache = {
     replicas_per_node_group = 1
     num_node_groups         = 1
     node_type               = "cache.t3.micro"
+    parameter_group_name    = "default.redis6.x.cluster.on"
   }
 }
 
