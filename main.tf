@@ -65,30 +65,33 @@ module "vpc" {
 module "documentdb" {
   source = "git::https://github.com/raghudevopsb73/tf-module-documentdb.git"
 
-  for_each   = var.documentdb
-  component  = each.value["component"]
-  subnet_ids = lookup(lookup(lookup(lookup(module.vpc, "main", null), "subnet_ids", null), "db", null), "subnet_ids", null)
-
-
-  tags           = var.tags
-  env            = var.env
-  kms_key_arn    = var.kms_key_arn
+  for_each       = var.documentdb
+  component      = each.value["component"]
+  subnet_ids     = lookup(lookup(lookup(lookup(module.vpc, "main", null), "subnet_ids", null), "db", null), "subnet_ids", null)
+  vpc_id         = lookup(lookup(module.vpc, "main", null), "vpc_id", null)
   sg_subnet_cidr = lookup(lookup(lookup(lookup(var.vpc, "main", null), "subnets", null), "app", null), "cidr_block", null)
 
+
+  tags        = var.tags
+  env         = var.env
+  kms_key_arn = var.kms_key_arn
 }
 
 module "elasticache" {
   source = "git::https://github.com/raghudevopsb73/tf-module-elasticache.git"
 
-  for_each   = var.elasticache
-  component  = each.value["component"]
-  subnet_ids = lookup(lookup(lookup(lookup(module.vpc, "main", null), "subnet_ids", null), "db", null), "subnet_ids", null)
+  for_each                = var.elasticache
+  component               = each.value["component"]
+  subnet_ids              = lookup(lookup(lookup(lookup(module.vpc, "main", null), "subnet_ids", null), "db", null), "subnet_ids", null)
+  engine                  = each.value["engine"]
+  engine_version          = each.value["engine_version"]
+  replicas_per_node_group = each.value["replicas_per_node_group"]
+  num_node_groups         = each.value["num_node_groups"]
+  vpc_id                  = lookup(lookup(module.vpc, "main", null), "vpc_id", null)
+  sg_subnet_cidr          = lookup(lookup(lookup(lookup(var.vpc, "main", null), "subnets", null), "app", null), "cidr_block", null)
 
-
-  tags           = var.tags
-  env            = var.env
-  kms_key_arn    = var.kms_key_arn
-  sg_subnet_cidr = lookup(lookup(lookup(lookup(var.vpc, "main", null), "subnets", null), "app", null), "cidr_block", null)
-
+  tags        = var.tags
+  env         = var.env
+  kms_key_arn = var.kms_key_arn
 }
 
