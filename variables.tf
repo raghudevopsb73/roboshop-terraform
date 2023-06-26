@@ -10,3 +10,4 @@ variable "rds" {}
 variable "kms_key_id" {}
 variable "kms_key_arn" {}
 variable "documentdb" {}
+variable "elasticache" {}
