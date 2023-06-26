@@ -65,12 +65,15 @@ module "vpc" {
 module "documentdb" {
   source = "git::https://github.com/raghudevopsb73/tf-module-documentdb.git"
 
-  for_each       = var.documentdb
-  component      = each.value["component"]
-  subnet_ids     = lookup(lookup(lookup(lookup(module.vpc, "main", null), "subnet_ids", null), "db", null), "subnet_ids", null)
-  vpc_id         = lookup(lookup(module.vpc, "main", null), "vpc_id", null)
-  sg_subnet_cidr = lookup(lookup(lookup(lookup(var.vpc, "main", null), "subnets", null), "app", null), "cidr_block", null)
-
+  for_each          = var.documentdb
+  component         = each.value["component"]
+  subnet_ids        = lookup(lookup(lookup(lookup(module.vpc, "main", null), "subnet_ids", null), "db", null), "subnet_ids", null)
+  vpc_id            = lookup(lookup(module.vpc, "main", null), "vpc_id", null)
+  sg_subnet_cidr    = lookup(lookup(lookup(lookup(var.vpc, "main", null), "subnets", null), "app", null), "cidr_block", null)
+  engine            = each.value["engine"]
+  engine_version    = each.value["engine_version"]
+  db_instance_count = each.value["db_instance_count"]
+  instance_class    = each.value["instance_class"]
 
   tags        = var.tags
   env         = var.env
