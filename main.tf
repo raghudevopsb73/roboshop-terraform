@@ -61,3 +61,32 @@ module "rds" {
   sg_subnet_cidr = lookup(lookup(lookup(lookup(var.vpc, "main", null), "subnets", null), "app", null), "cidr_block", null)
 
 }
+
+module "documentdb" {
+  source = "git::https://github.com/raghudevopsb73/tf-module-documentdb.git"
+
+  for_each   = var.documentdb
+  component  = each.value["component"]
+  subnet_ids = lookup(lookup(lookup(lookup(module.vpc, "main", null), "subnet_ids", null), "db", null), "subnet_ids", null)
+
+
+  tags           = var.tags
+  env            = var.env
+  kms_key_arn    = var.kms_key_arn
+  sg_subnet_cidr = lookup(lookup(lookup(lookup(var.vpc, "main", null), "subnets", null), "app", null), "cidr_block", null)
+
+}
+
+//module "elasticache" {
+//  source = "git::https://github.com/raghudevopsb73/tf-module-elasticache.git"
+//
+//  for_each       = var.rds
+//
+//
+//  tags           = var.tags
+//  env            = var.env
+//  kms_key_arn    = var.kms_key_arn
+//  sg_subnet_cidr = lookup(lookup(lookup(lookup(var.vpc, "main", null), "subnets", null), "app", null), "cidr_block", null)
+//
+//}
+
