@@ -108,7 +108,7 @@ module "alb" {
   internal           = each.value["internal"]
   load_balancer_type = each.value["load_balancer_type"]
   vpc_id             = lookup(lookup(module.vpc, "main", null), "vpc_id", null)
-  sg_subnet_cidr     = each.value[name] == "public" ? ["0.0.0.0/0"] : local.app_web_subnet_cidr
+  sg_subnet_cidr     = each.value["name"] == "public" ? ["0.0.0.0/0"] : local.app_web_subnet_cidr
   subnets            = lookup(lookup(lookup(lookup(module.vpc, "main", null), "subnet_ids", null), each.value["subnet_ref"], null), "subnet_ids", null)
 
   env  = var.env
