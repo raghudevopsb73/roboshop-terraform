@@ -117,6 +117,8 @@ module "apps" {
   subnets          = lookup(lookup(lookup(lookup(module.vpc, "main", null), "subnet_ids", null), each.value["subnet_ref"], null), "subnet_ids", null)
   vpc_id           = lookup(lookup(module.vpc, "main", null), "vpc_id", null)
   lb_dns_name      = lookup(lookup(module.alb, each.value["lb_ref"], null), "dns_name", null)
+  listener_arn     = lookup(lookup(module.alb, each.value["lb_ref"], null), "listener_arn", null)
+  lb_rule_priority = each.value["lb_rule_priority"]
 
   env            = var.env
   tags           = var.tags
