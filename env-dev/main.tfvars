@@ -93,6 +93,7 @@ apps = {
     max_size         = 1
     min_size         = 1
     subnet_ref       = "app"
+    lb_ref           = "private"
   }
 }
 
