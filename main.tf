@@ -112,7 +112,7 @@ module "apps" {
   instance_type    = each.value["instance_type"]
   max_size         = each.value["max_size"]
   min_size         = each.value["min_size"]
-  sg_subnets_cidr  = lookup(lookup(lookup(lookup(var.vpc, "main", null), "subnets", null), "app", null), "cidr_block", null)
+  sg_subnets_cidr  = lookup(lookup(lookup(lookup(var.vpc, "main", null), "subnets", null), each.value["subnet_ref"], null), "cidr_block", null)
   component        = each.value["component"]
   subnets          = lookup(lookup(lookup(lookup(module.vpc, "main", null), "subnet_ids", null), each.value["subnet_ref"], null), "subnet_ids", null)
   vpc_id           = lookup(lookup(module.vpc, "main", null), "vpc_id", null)
@@ -124,17 +124,3 @@ module "apps" {
 
 }
 
-//variable "env" {}
-//variable "component" {}
-//variable "tags" {
-//  default = {}
-//}
-//variable "subnet_id" {}
-//variable "vpc_id" {}
-//variable "sg_subnets_cidr" {}
-//variable "app_port" {}
-//variable "kms_key_id" {}
-//variable "instance_type" {}
-//variable "desired_capacity" {}
-//variable "max_size" {}
-//variable "min_size" {}
