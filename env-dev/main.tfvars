@@ -121,15 +121,16 @@ apps = {
     extra_param_access = ["arn:aws:ssm:us-east-1:739561048503:parameter/roboshop.dev.docdb.*"]
   }
   shipping = {
-    component        = "shipping"
-    app_port         = 8080
-    instance_type    = "t3.small"
-    desired_capacity = 1
-    max_size         = 1
-    min_size         = 1
-    subnet_ref       = "app"
-    lb_ref           = "private"
-    lb_rule_priority = 103
+    component          = "shipping"
+    app_port           = 8080
+    instance_type      = "t3.small"
+    desired_capacity   = 1
+    max_size           = 1
+    min_size           = 1
+    subnet_ref         = "app"
+    lb_ref             = "private"
+    lb_rule_priority   = 103
+    extra_param_access = ["arn:aws:ssm:us-east-1:739561048503:parameter/roboshop.dev.mysql.*"]
   }
   payment = {
     component        = "payment"
