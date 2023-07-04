@@ -21,13 +21,13 @@ vpc = {
   }
 }
 
-default_vpc_id = "vpc-0e451797fe9172e67"
-default_vpc_rt = "rtb-006100fe759977d85"
-allow_ssh_cidr = ["172.31.0.8/32"]
-zone_id        = "Z055331734ICV430E01P7"
-kms_key_id     = "f0a71b80-90c3-4da1-a189-b4b95e9764e8"
-kms_key_arn    = "arn:aws:kms:us-east-1:739561048503:key/f0a71b80-90c3-4da1-a189-b4b95e9764e8"
-
+default_vpc_id        = "vpc-0e451797fe9172e67"
+default_vpc_rt        = "rtb-006100fe759977d85"
+allow_ssh_cidr        = ["172.31.0.8/32"]
+zone_id               = "Z055331734ICV430E01P7"
+kms_key_id            = "f0a71b80-90c3-4da1-a189-b4b95e9764e8"
+kms_key_arn           = "arn:aws:kms:us-east-1:739561048503:key/f0a71b80-90c3-4da1-a189-b4b95e9764e8"
+allow_prometheus_cidr = ["172.31.95.219/32"]
 
 rabbitmq = {
   main = {
