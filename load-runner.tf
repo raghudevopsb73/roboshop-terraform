@@ -20,7 +20,7 @@ resource "aws_instance" "load-runner" {
       host     = self.public_ip
     }
     inline = [
-      "labauto docker",
+      "curl https://raw.githubusercontent.com/linuxautomations/labautomation/master/tools/docker/install.sh | bash",
       "docker pull robotshop/rs-load:latest"
     ]
   }
