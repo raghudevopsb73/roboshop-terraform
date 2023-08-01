@@ -132,6 +132,13 @@ module "vpc" {
 //  allow_prometheus_cidr = var.allow_prometheus_cidr
 //}
 
+module "eks" {
+  source = "git::https://github.com/raghudevopsb73/tf-module-eks.git"
+
+  for_each   = var.eks
+  subnet_ids = lookup(lookup(lookup(lookup(module.vpc, "main", null), "subnet_ids", null), each.value["subnet_ref"], null), "subnet_ids", null)
+  env        = var.env
+}
 
 
 

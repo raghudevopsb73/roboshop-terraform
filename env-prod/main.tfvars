@@ -156,5 +156,10 @@ apps = {
   }
 }
 
+eks = {
+  main = {
+    subnet_ref = "app"
+  }
+}
 
 
