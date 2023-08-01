@@ -158,7 +158,11 @@ apps = {
 
 eks = {
   main = {
-    subnet_ref = "app"
+    subnet_ref     = "app"
+    min_size       = 2
+    max_size       = 2
+    capacity_type  = "SPOT"
+    instance_types = ["m2.2xlarge", ]
   }
 }
 
